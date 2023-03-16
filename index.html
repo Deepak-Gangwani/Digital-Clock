@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital clock</title>
+    <link rel="shortcut icon"
+        href="https://images-platform.99static.com//0ZStLQvlGJmlJVOhWzw4-QFumJ4=/378x2270:1015x2908/fit-in/500x500/99designs-contests-attachments/124/124379/attachment_124379801"
+        type="image/x-icon">
+    <style>
+        body {
+            background: url(images/pexels-monoar-rahman-100733\ \(2\).jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        div {
+            border: 1px solid rgb(255, 255, 255, 0.3);
+            /* border: 5px groove aqua; */
+            border-radius: 10px;
+            background: rgb(255, 255, 255, 0.2);
+            /* opacity: 0.7; */
+            box-shadow: 0 4px 30px rgb(0, 0, 0, 0.1);
+            /* transition: 0.5s; */
+            backdrop-filter: blur(5px);
+            width: 50%;
+            /* justify-content: center; */
+            /* align-items: center; */
+            /* text-align: center; */
+            /* box-align: center; */
+            margin-left: 20%;
+            margin-top: 3%;
+            /* margin-bottom: 5%; */
+            height: auto;
+            animation: mymove 3s infinite;
+            position: relative;
+
+        }
+
+        @keyframes mymove {
+
+            0% {
+                border: 20px groove rgb(255, 71, 252);
+            }
+
+            25% {
+                border: 20px groove rgb(71, 200, 255);
+            }
+
+            50% {
+                border: 20px groove rgb(181, 255, 71);
+            }
+
+            75% {
+                border: 20px groove tomato;
+            }
+
+            100% {
+                border: 20px groove rgb(255, 194, 71);
+            }
+        }
+
+        h1 {
+            color: rgb(247, 17, 17);
+            font-weight: 2500;
+            font-size: 70px;
+        }
+    </style>
+</head>
+
+<!-- onload event is uswd to refresh page automaticaally by calling that function -->
+
+<body style="text-align: center;" onload="showTime()">
+    <h2 style="font-size: 50px; color: aliceblue; margin-left: -200px;">Welcome To Digital Clock</h2>
+    <div data-tilt>
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+    </div>
+    <script>
+        const arr = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+        function showTime() {       
+            const d = new Date();
+            let h = d.getHours();
+            let m = d.getMinutes();
+            let s = d.getSeconds();
+            let day = d.getDate();
+            let month = d.getMonth();
+            let year = d.getFullYear();
+            let session = "AM";
+            let exactday=arr[d.getDay()];
+
+            if (h > 12) {
+                // h=13-12=1 this will give time according to 12 hours
+                h = h - 12;
+            }
+
+            if (h >= 12) {
+                session = "PM";
+            }
+
+            // using ternary operator to print 0 in single digit for better understanding of time
+            h = h < 10 ? "0" + h : h;
+            m = m < 10 ? "0" + m : m;
+            s = s < 10 ? "0" + s : s;
+
+
+            let time = h + " : " + m + " : " + s + " " + session;
+            let dmy = day + "/" + month + "/" + year;
+            document.getElementsByTagName("h1")[0].innerText = time;
+            document.getElementsByTagName("h1")[1].innerText = dmy;
+            document.getElementsByTagName("h1")[2].innerText = exactday;
+            setTimeout(showTime, 1000);
+        }
+    </script>
+
+    <script src="vanilla-tilt.js"></script>
+</body>
+
+</html>
